@@ -9,18 +9,19 @@ int numberA = new Random().Next(1, 99);
 Console.WriteLine($"Случайное первое число  -> {numberA} ");
 int numberB = new Random().Next(1, 99);
 Console.WriteLine($"Случайное второе  число  -> {numberB} "); 
-
 int result = Remainde(numberA, numberB);
 
-if (result == 0 )
-{
-    Console.WriteLine("кратно");
-}
-else
-{
-    Console.WriteLine($"не кратно, остаток {result}");
-}
+// if (result == 0 )
+// {
+//     Console.WriteLine("кратно");
+// }
+// else
+// {
+//     Console.WriteLine($"не кратно, остаток {result}");
+// }
 
+string res = (result == 0) ? "кратно" : $"не кратно, остаток {result}";
+Console.Write(res);
 int Remainde (int numA, int numB) 
 {
     return numA % numB ; 
