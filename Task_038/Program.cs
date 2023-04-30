@@ -29,20 +29,23 @@ double FindCount(double[] arr)
 {
     double min = 0;
     double max = 0;
-    double minMax = 0;
+    // double minMax = 0;
     for (int i = 0; i < arr.Length; i++)
     {
        if (arr[i] > max)
        {
           max = arr[i];
        }
+    }   
+    for (int i = 0; i < arr.Length; i++)
+    {   
        if (arr[i] < min)
        {
           min = arr[i];
        }
-       minMax = max - min;
     }
-    double round = Math.Round(minMax, 1);
+    max = max - min;
+    double round = Math.Round(max, 1);
     return round;
 }
 
