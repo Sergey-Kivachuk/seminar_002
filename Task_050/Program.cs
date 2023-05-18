@@ -27,15 +27,14 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 
 void EvenElements(int[,] matrix,int a, int b )
 {
-     if ( a > matrix.GetLength(0)-1  &&  b > matrix.GetLength(1)-1)
+    if ( a > matrix.GetLength(0)-1  &&  b > matrix.GetLength(1)-1)
     {
-        Console.WriteLine("Элемент не существует  ");
+        Console.WriteLine("Такого элемента не существует");
     }
     else
-    {
-        Console.WriteLine("Значение элемента массива = {0}", matrix[a, b]);
+    {    
+        Console.WriteLine($"Значение элемента массива = { matrix[a,b]}");
     }
-    Console.WriteLine();
 }
 void PrintMatrix (int[,] matrix)
 {
