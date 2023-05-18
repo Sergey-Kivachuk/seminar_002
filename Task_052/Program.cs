@@ -39,7 +39,6 @@ void PrintArif (int[,] matrix)
     Console.Write("Среднее арифметическое каждого столбца: ");
     int i,j;
     double sum = 0;
-    // double round =1;
     for (i = 0; i < matrix.GetLength(1); i++)
     {
         for (j = 0; j < matrix.GetLength(0); j++)
