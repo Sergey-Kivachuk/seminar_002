@@ -35,29 +35,29 @@ int[,] CreateMatrix2 (int row, int col, int min, int max)
     return matrix2;
 } 
  
-void PrintMatrix1(int[,] matrix)
+void PrintMatrix1(int[,] matrix1)
 {
-    for (int i = 0; i <  matrix.GetLength(0); i++)
+    for (int i = 0; i <  matrix1.GetLength(0); i++)
     {
         Console.Write("|");
-        for (int j = 0; j < matrix.GetLength(1); j++) 
+        for (int j = 0; j < matrix1.GetLength(1); j++) 
         {
-            if (j < matrix.GetLength(1) -1) Console.Write($"{matrix[i, j], 3}");
-            else Console.Write($"{matrix[i, j], 3}");
+            if (j < matrix1.GetLength(1) -1) Console.Write($"{matrix1[i, j], 3}");
+            else Console.Write($"{matrix1[i, j], 3}");
         }
         Console.WriteLine(" |");        
     }        
 }
  
-void PrintMatrix2(int[,] matrix)
+void PrintMatrix2(int[,] matrix2)
 {
-    for (int i = 0; i <  matrix.GetLength(0); i++)
+    for (int i = 0; i <  matrix2.GetLength(0); i++)
     {
         Console.Write("|");
-        for (int j = 0; j < matrix.GetLength(1); j++) 
+        for (int j = 0; j < matrix2.GetLength(1); j++) 
         {
-            if (j < matrix.GetLength(1) -1) Console.Write($"{matrix[i, j], 3}");
-            else Console.Write($"{matrix[i, j], 3}");
+            if (j < matrix2.GetLength(1) -1) Console.Write($"{matrix2[i, j], 3}");
+            else Console.Write($"{matrix2[i, j], 3}");
         }
         Console.WriteLine(" |");        
     }        
@@ -65,31 +65,44 @@ void PrintMatrix2(int[,] matrix)
 
 int[,] DivMatrix(int[,] matrix1, int[,] matrix2)
 {
-    int aRows = matrix1.GetLength(0);
-    int aCols = matrix1.GetLength(1);
-    int bRows = matrix2.GetLength(0);
-    int bCols = matrix2.GetLength(1);
-    if (aCols != bRows)
-    {    
-        int[,] newMatrix = new int[aRows, bCols];
-        for (int i = 0; i < newMatrix.GetLength(0); i++)
-        { 
-            for (int j = 0; j < newMatrix.GetLength(1); j++) 
+    if (matrix1.GetLength(1) != matrix2.GetLength(0))
+    {
+        throw new Exception("Умножение не возможно! Количество столбцов первой матрицы не равно количеству строк второй матрицы.");
+    }
+    var matrix = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+    for (var i = 0; i < matrix1.GetLength(0); i++)
+    {
+        for (var j = 0; j < matrix2.GetLength(1); j++)
+        {
+            matrix[i, j] = 0;
+            for (var k = 0; k < matrix1.GetLength(1); k++)
             {
-                for (int k = 0; k < aCols; k++)
-                {
-                    newMatrix[i,j] += matrix1[i,k] * matrix2[k,j];
-                }
-                return newMatrix;    
+                matrix[i, j] += matrix1[i, k] * matrix2[k, j];
             }
         }
-    }  
+    }
+    return matrix;
 }
- 
-int[,] array2D = CreateMatrix1(2, 2, 0, 9);
-int[,] matrix = CreateMatrix2(2, 2, 0, 9);
-PrintMatrix1(array2D);
-// Console.WriteLine();
-PrintMatrix2(array2D);
-int[,] newMatrix = DivMatrix (matrix1, matrix2);
-PrintMatrix2(newMatrix);
+void PrintMatrix3(int[,] matrix)
+{
+    for (int i = 0; i <  matrix.GetLength(0); i++)
+    {
+        Console.Write("|");
+        for (int j = 0; j < matrix.GetLength(1); j++) 
+        {
+            if (j < matrix.GetLength(1) -1) Console.Write($"{matrix[i, j], 5}");
+            else Console.Write($"{matrix[i, j], 5}");
+        }
+        Console.WriteLine(" |");        
+    }        
+}
+int[,] array = CreateMatrix1(3, 3, 0, 9);
+int[,] matrix = CreateMatrix2(3, 3, 0, 9);
+PrintMatrix1(array);
+Console.ReadLine();
+PrintMatrix2(matrix);
+Console.WriteLine();
+int[,] result = DivMatrix(array,matrix);
+PrintMatrix3(result);
+Console.ReadLine();
+
