@@ -4,16 +4,16 @@
 //m = 3, n = 2 -> A(m,n) = 29
 
 Console.WriteLine("Введите первое целое положительное число");
-int m = Convert.ToInt32(Console.ReadLine());
+int numberM = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите второе целое положительное число");
-int n = Convert.ToInt32(Console.ReadLine());
-int functionAkkerman = Ack(m, n);
+int numberN = Convert.ToInt32(Console.ReadLine());
+int functionAkkerman = Ack(numberM, numberN);
 
 Console.Write($"Функция Аккермана = {functionAkkerman} ");
 
-int Ack(int m, int n)
+int Ack(int numberM, int numberN)
 {
-    if (m == 0) return n + 1;
-    else if (n == 0) return Ack(m - 1, 1);
-    else return Ack(m - 1, Ack(m, n - 1));
+    if (numberM == 0) return numberN + 1;
+    else if (numberN == 0) return Ack(numberM - 1, 1);
+    else return Ack(numberM - 1, Ack(numberM, numberN - 1));
 }
